@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %} {% block title %}Aliments{% endblock %} {% block monTitre %} Liste de tous les aliments {% if isCalorie %} avec plus de 20 calories {% elseif isGlucide %} avec plus de 6 glucides {% endif %} {% endblock %} {% block body
+%}
+<a href="{{path("aliments")}}" class="btn btn-primary">Tous</a>
+<a href="{{ path('alimentsParCalorie',{'calorie':20}) }}" class="btn btn-primary">Aliments avec plus de 20 calories au 100g</a>
+<a href="{{path('alimentsParGlucide',{'glucide':6})}}" class="btn btn-primary">Aliments avec moins de 5 glucides au 100g</a>
+<div class="row">
+    {% for aliment in aliments %}
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="card border-primary mb-3 mx-auto" style="max-width: 20rem">
+            <div class="card-header text-center">
+                <img src="{{asset('images/aliments/' ~  aliment.image)}}" alt="" class="perso_imgAliment card-img-top">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title text-center pb-2 mx-3 border-bottom border-primary">{{ aliment.nom }}</h3>
+                <p class="card-text">
+                    <h4 class="text-center">Prix (kilo) : {{ aliment.prix }}</h4>
+                    <h4 class="text-center">Types : {{ aliment.type.libelle }}</h4>
+                    <table class="table text-center">
+                        <tr class="table-primary">
+                            <td>Propriété</td>
+                            <td>Valeur (100g)</td>
+                        </tr>
+                        <tr>
+                            <td>Calorie</td>
+                            <td>{{ aliment.calorie }}</td>
+                        </tr>
+                        <tr>
+                            <td>Protéine</td>
+                            <td>{{ aliment.proteine }}</td>
+                        </tr>
+                        <tr>
+                            <td>Glucide</td>
+                            <td>{{ aliment.glucide }}</td>
+                        </tr>
+                        <tr>
+                            <td>Lipide</td>
+                            <td>{{ aliment.lipide }}</td>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

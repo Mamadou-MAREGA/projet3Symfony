@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+{% block monTitre %}
+    Inscription sur le site
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.username,{
+            "attr" : {
+                "placeholder" : "Saisir votre nom"
+            },
+            "label" : "Votre login"
+        }) }}
+        {{ form_widget(form) }}
+    <input class="btn btn-primary" type="submit" value="Valider">
+    {{ form_end(form)}}
+{% endblock %}
